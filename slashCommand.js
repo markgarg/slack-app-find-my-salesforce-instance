@@ -8,7 +8,7 @@ const findInstanceForAlias = async (alias) => {
     try {
         const response = await axios.get(url);
         console.log(response.data);
-        return response.data.instanceKey;
+        return response.data[0].instanceKey;
     } catch (error) {
         console.error('error in findInstanceForAlias :', error);
         throw error;

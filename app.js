@@ -11,10 +11,10 @@ const app = new App({
 
 app.command("/find-salesforce-instance", async ({ command, ack, say }) => {
     try {
-        console.log(`Received command ${command}`);
+        console.log(`Received command ${command.text}`);
         await ack();
         const instanceKey = await findInstanceForAlias(command.text);
-        say(instanceKey);
+        say(`Instance for ${command.text} is ${instanceKey}`);
     } catch (error) {
         console.log("err")
         console.error(error);
@@ -25,6 +25,5 @@ app.command("/find-salesforce-instance", async ({ command, ack, say }) => {
 (async () => {
     // Start your app
     await app.start(process.env.PORT || 3000);
-
     console.log('⚡️ Bolt app is running!');
 })();
